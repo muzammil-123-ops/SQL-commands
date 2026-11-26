@@ -1,0 +1,14 @@
+create database muzu;
+use muzu;
+show tables;
+create table customer (Customerid int,customername varchar(50),city varchar (50),email varchar(50));
+alter table customer add primary key (Customerid);
+create table orders (orderid int,customerid int,orderdate date,product varchar(20),amount int,orderstatus varchar(50),foreign key(customerid)references customer (customerid));
+desc orders;
+select * from orders;
+select * from customer;
+select customer.customername,customer.city,orders.product,orders.amount from customer inner join orders on customer.customerid=orders.customerid;
+select customer.customername,orders.product from orders ,customer where amount>3000 ;
+select customer.customername,orders.product,orders.orderid from customer left join orders on customer.customerid=orders.customerid;
+select customer.customername,customer.city,orders.orderid from customer right join orders on customer.customerid=orders.customerid; 
+select customer.customername,orders.product from customer cross join orders;
